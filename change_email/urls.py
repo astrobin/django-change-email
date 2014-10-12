@@ -1,8 +1,8 @@
 from django import VERSION
 if VERSION[0] >= 1 and VERSION[1] >= 6:
-        from django.conf.urls import *
-    else:
-        from django.conf.urls.defaults import *
+    from django.conf.urls import *
+else:
+    from django.conf.urls.defaults import *
 
 from change_email.views import EmailChangeConfirmView
 from change_email.views import EmailChangeCreateView
