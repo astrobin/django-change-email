@@ -183,13 +183,13 @@ These templates will receive the following context variables:
             html_message = render_to_string(body_htm, context)
             msg = EmailMultiAlternatives(subject, text_message,
                                          settings.EMAIL_CHANGE_FROM_EMAIL,
-                                         [self.new_email])
+                                         [self.user.email])
             msg.attach_alternative(html_message, "text/html")
             msg.send()
         else:
             send_mail(subject, text_message,
                       settings.EMAIL_CHANGE_FROM_EMAIL,
-                      [self.new_email])
+                      [self.user.emaill])
 
     def verify_signature(self, signature):
         """
