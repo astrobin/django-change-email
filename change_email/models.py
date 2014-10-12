@@ -189,7 +189,7 @@ These templates will receive the following context variables:
         else:
             send_mail(subject, text_message,
                       settings.EMAIL_CHANGE_FROM_EMAIL,
-                      [self.user.emaill])
+                      [self.user.email])
 
     def verify_signature(self, signature):
         """
