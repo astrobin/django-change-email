@@ -1,5 +1,6 @@
 import logging
 
+from django import VERSION
 from django.core.urlresolvers import reverse_lazy
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
@@ -154,7 +155,10 @@ request, adds a success message for the user and redirects to
         email_change_created.send(sender=self, request=self.request)
         form.instance.send_confirmation_mail(self.request)
         return instance
-    form_valid = transaction.commit_on_success(form_valid)
+    if VERSION[0] >= 1 and VERSION[1] >= 6:
+        form_valid = transaction.atomic(form_valid)
+    else:
+        form_valid = transaction.commit_on_success(form_valid)
 
 
 class EmailChangeDeleteView(DeleteView):
