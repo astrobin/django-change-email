@@ -1,6 +1,9 @@
 from datetime import timedelta
 
-from django.contrib.sites.models import RequestSite
+try:
+    from django.contrib.sites.requests import RequestSite
+except ImportError:
+    from django.contrib.sites.requests import RequestSite
 from django.contrib.sites.models import Site
 from django.core.mail import EmailMultiAlternatives
 from django.core.mail import send_mail
@@ -141,7 +144,7 @@ These templates will receive the following context variables:
     is installed, this may be an instance of either
     ``django.contrib.sites.models.Site`` (if the sites
     application is installed) or
-    ``django.contrib.sites.models.RequestSite`` (if
+    ``django.contrib.sites.requests.RequestSite`` (if
     not). Consult the documentation for the Django sites
     framework for details regarding these objects' interfaces.
 
